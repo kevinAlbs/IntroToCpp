@@ -4,11 +4,9 @@ In this lab, you'll write two functions that manipulate strings.
 
 Your code should make proper use of
 
-    - function declarations and definitions
+    - function definitions
 
-    - header files and source files
-
-    - namespaces
+    - `for` loops
 
     - pass-by-reference and pass-by-value
 
@@ -16,19 +14,18 @@ Your code should make proper use of
 
 ### Getting started
 
-A partial solution (missing only `lab1.hpp` and `lab1.cpp`) is present
+A partial solution (missing only some lines from the middle) is present
 in the `partial/` directory. You should start there.
 
 Run `make` to build the project. The compiler will try to compile `lab1.m.cpp`
-and immediately complain that the header file `lab1.hpp` was included but
-does not yet exist. Study the code to see what `lab1.hpp` ought to declare.
+and immediately complain that the identifier `is_palindrome` was never declared.
+does not yet exist. Study the code to see what functions you need to add.
 
-You will write two new functions, declared in `lab1.hpp` and defined in
-`lab1.cpp`:
+You will write two new functions, defined in `lab1.m.cpp`:
 
-    - `lab1::reverse_in_place(s)` reverses the string `s` in place.
+    - `reverse_in_place(s)` reverses the string `s` in place.
 
-    - `lab1::is_palindrome(s)` returns a `bool` (`true` or `false`)
+    - `is_palindrome(s)` returns a `bool` (`true` or `false`)
       depending on whether the given string is a palindrome or not.
       This function does not modify the string that was passed in,
       although it might make a copy of it.

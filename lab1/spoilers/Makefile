@@ -1,5 +1,5 @@
 CXXFLAGS= -std=c++14 -O2 -W -Wall -Wextra -pedantic
-OBJFILES= lab1.m.o lab1.o readString.o
+OBJFILES= lab1.m.o readString.o
 
 lab1: $(OBJFILES)
 	$(CXX) $(CXXFLAGS) $^ -o $@

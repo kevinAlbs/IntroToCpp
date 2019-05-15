@@ -1,12 +1,12 @@
-#include "lab1.hpp"
+#include "lab2.hpp"
 #include <string>
 
-namespace lab1 {
+namespace lab2 {
 
 bool is_palindrome(const std::string& s)
 {
     std::string t = s;
-    lab1::reverse_in_place(t);
+    lab2::reverse_in_place(t);
     return (s == t);
 }
 
@@ -20,4 +20,4 @@ void reverse_in_place(std::string& s)
     }
 }
 
-} // namespace lab1
+} // namespace lab2
