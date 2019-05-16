@@ -4,7 +4,7 @@ OBJFILES= book.o library.o tests.m.o
 test: tests
 	./tests
 
-tests: tests.m.o $(OBJFILES)
+tests: $(OBJFILES)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 %.o: %.cpp %.hpp

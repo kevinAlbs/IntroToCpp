@@ -1,9 +1,10 @@
 #include "book.hpp"
 
+#include <ostream>
 #include <string>
 #include <utility>
 
-namespace lab3 {
+namespace lab4 {
 
 Book::Book(const std::string& title, const std::string& author, int pagecount)
     : title_(title), author_(author), pagecount_(pagecount)
@@ -15,4 +16,9 @@ void Book::swap(Book& rhs) {
     std::swap(pagecount_, rhs.pagecount_);
 }
 
-} // namespace lab3
+void Book::print(std::ostream& os) const {
+    os << title_ << " by " << author_;
+    os << " (" << pagecount_ << " pages)";
+}
+
+} // namespace lab4

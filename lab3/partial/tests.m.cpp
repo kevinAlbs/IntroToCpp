@@ -2,6 +2,7 @@
 #include "library.hpp"
 
 #include <cassert>
+#include <cstdio>
 #include <string>
 
 static void test_book_getters()
@@ -73,5 +74,5 @@ int main()
     test_library_addbook();
     test_library_removebooks();
 
-    puts("If you're seeing this line, it means all tests passed.");
+    std::puts("If you're seeing this line, it means all tests passed.");
 }

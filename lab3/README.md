@@ -13,6 +13,9 @@ Your code should make proper use of
 
     - const member functions
 
+All your code should be in the `lab3` namespace.
+
+
 ### Getting started
 
 A partial solution is present in the `partial/` directory.
@@ -56,12 +59,14 @@ all the provided tests. Consider writing some additional unit tests.
 
 ## Bonus
 
-If you have time, add a function `kindle_edition_of`
+If you have time, add a function `convert_to_kindle`
 that takes a `Book` and returns a `Book` that's equivalent
 except that its page count is zero.
 
     Book b("Old Man and the Sea", "Hemingway", 100);
-    Book k = kindle_edition_of(b);
+    Book k = convert_to_kindle(b);
     assert(k.title() == "Old Man and the Sea");
     assert(k.author() == "Hemingway");
     assert(k.pagecount() == 0);
+
+This function will be relevant to Lab 4.
