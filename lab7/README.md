@@ -36,10 +36,12 @@ print themselves.
 
 Class `Book` has the following member functions:
 
-| Book(title, author)            | Protected constructor |
-| title()                        | Get the title of the book |
+| Name                           | Purpose                    |
+| :----------------------------- | :------------------------- |
+| Book(title, author)            | Protected constructor      |
+| title()                        | Get the title of the book  |
 | author()                       | Get the author of the book |
-| pagecount()                    | Get the number of pages |
+| pagecount()                    | Get the number of pages    |
 | swap(rhs : Book)               | This function should no longer be provided |
 | print(os : ostream)            | Print the book and its type to `os` |
 
@@ -58,8 +60,10 @@ behavior which is common to all kinds of `Book`s.
 Class `Library` has the following member functions, most of which
 are the same as in Lab 3:
 
-| Library()                      | Constructor |
-| add_book(unique_ptr<Book>)     | Add a book to the library |
+| Name                           | Purpose                    |
+| :----------------------------- | :------------------------- |
+| Library()                      | Constructor                |
+| add_book(unique_ptr\<Book>)    | Add a book to the library  |
 | bookcount()                    | Return the number of books in the library |
 | pagecount()                    | Return the total number of pages in the library |
 | remove_books_by_title(title)   | Remove all books in the library with the given title |
@@ -78,9 +82,11 @@ The `begin` and `end` methods have been removed from the specification.
 
 A `FullTextBook` has additional methods
 
-| FullTextBook(title, author, pages : std::vector<std::string>) | Public constructor |
-| get_page(n : int)                                             | Get the text of the given page, as a string |
-| pagecount()                                                   | Overrides `Book::pagecount()` |
+| Name                                                           | Purpose            |
+| :------------------------------------------------------------- | :----------------- |
+| FullTextBook(title, author, pages : std::vector\<std::string>) | Public constructor |
+| get_page(n : int)                                              | Get the text of the given page, as a string |
+| pagecount()                                                    | Overrides `Book::pagecount()` |
 
 The `pagecount` method of a `FullTextBook` should return `pages_.size()`.
 
@@ -98,6 +104,8 @@ specifically for `FullTextBook`; you should merely implement an overriding
 
 ### 3b. Implement class `KindleBook` as a subclass of `Book`
 
+| Name                       | Purpose            |
+| :------------------------- | :----------------- |
 | KindleBook(title, author)  | Public constructor |
 | pagecount()                | Overrides `Book::pagecount()` and invariably returns zero |
 

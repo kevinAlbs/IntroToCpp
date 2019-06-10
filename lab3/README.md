@@ -30,10 +30,12 @@ does not yet exist.
 
 Class `Book` has the following member functions:
 
-| Book(title, author, pagecount) | Constructor |
-| title()                        | Get the title of the book |
+| Name                           | Purpose                    |
+| :----------------------------- | :------------------------- |
+| Book(title, author, pagecount) | Constructor                |
+| title()                        | Get the title of the book  |
 | author()                       | Get the author of the book |
-| pagecount()                    | Get the number of pages |
+| pagecount()                    | Get the number of pages    |
 | swap(rhs : Book)               | Exchange the contents of this book object with another |
 
 
@@ -41,8 +43,10 @@ Class `Book` has the following member functions:
 
 Class `Library` has the following member functions:
 
-| Library()                      | Constructor |
-| add_book(Book)                 | Add a book to the library |
+| Name                           | Purpose                    |
+| :----------------------------- | :------------------------- |
+| Library()                      | Constructor                |
+| add_book(Book)                 | Add a book to the library  |
 | bookcount()                    | Return the number of books in the library |
 | pagecount()                    | Return the total number of pages in the library |
 | remove_books_by_title(title)   | Remove all books in the library with the given title |

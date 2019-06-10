@@ -35,8 +35,10 @@ Modify your class `Library` to store `Book` objects in
 a `std::multiset` rather than a `std::vector<Book>`.
 The required member functions remain the same:
 
-| Library()                      | Constructor |
-| add_book(Book)                 | Add a book to the library |
+| Name                           | Purpose                    |
+| :----------------------------- | :------------------------- |
+| Library()                      | Constructor                |
+| add_book(Book)                 | Add a book to the library  |
 | bookcount()                    | Return the number of books in the library |
 | pagecount()                    | Return the total number of pages in the library |
 | remove_books_by_title(title)   | Remove all books in the library with the given title |
