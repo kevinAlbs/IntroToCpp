@@ -8,8 +8,7 @@
 
 #include <cstdio>
 
-int main()
-{
+int main() {
 #ifndef SKIP_PART1
     test_book_getters();
     test_book_const_getters();

@@ -34,4 +34,4 @@ public:
     }
 };
 
-} // namespace lab7
+}  // namespace lab7

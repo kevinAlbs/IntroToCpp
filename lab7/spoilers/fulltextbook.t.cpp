@@ -1,41 +1,37 @@
 #include "fulltextbook.t.hpp"
-#include "fulltextbook.hpp"
 #include "book.hpp"
+#include "fulltextbook.hpp"
 
 #include <cassert>
-#include <string>
 #include <sstream>
+#include <string>
 #include <type_traits>
 #include <vector>
 
 using lab7::Book;
 using lab7::FullTextBook;
 
-void test_fulltextbook_getters()
-{
+void test_fulltextbook_getters() {
     FullTextBook b("Old Man and the Sea", "Hemingway", {"page 1", "page 2"});
     assert(b.title() == "Old Man and the Sea");
     assert(b.author() == "Hemingway");
     assert(b.pagecount() == 2);
 }
 
-void test_fulltextbook_const_getters()
-{
+void test_fulltextbook_const_getters() {
     const FullTextBook c("A Rebours", "Huysmans", {"page 1", "page 2", "page 3"});
     assert(c.title() == "A Rebours");
     assert(c.author() == "Huysmans");
     assert(c.pagecount() == 3);
 }
 
-void test_fulltextbook_get_page()
-{
+void test_fulltextbook_get_page() {
     const FullTextBook c("Old Man and the Sea", "Hemingway", {"page 1", "page 2"});
     assert(c.get_page(0) == "page 1");
     assert(c.get_page(1) == "page 2");
 }
 
-void test_fulltextbook_get_page_throws_out_of_range()
-{
+void test_fulltextbook_get_page_throws_out_of_range() {
     const FullTextBook c("Old Man and the Sea", "Hemingway", {"page 1", "page 2"});
     try {
         c.get_page(-1);
@@ -51,8 +47,7 @@ void test_fulltextbook_get_page_throws_out_of_range()
     }
 }
 
-void test_fulltextbook_stream_insertion()
-{
+void test_fulltextbook_stream_insertion() {
     {
         FullTextBook b("The Scarlet Letter", "Hawthorne", {"page 1", "page 2"});
         std::ostringstream oss;
@@ -77,8 +72,7 @@ void test_fulltextbook_stream_insertion()
     }
 }
 
-void test_fulltextbook_stream_insertion_chaining()
-{
+void test_fulltextbook_stream_insertion_chaining() {
     FullTextBook b("The Scarlet Letter", "Hawthorne", {"page 1", "page 2", "page 3"});
     std::ostringstream oss;
     oss << '.' << b << ".\n";
@@ -86,11 +80,11 @@ void test_fulltextbook_stream_insertion_chaining()
     assert(representation == ".The Scarlet Letter by Hawthorne (3 pages, full text).\n");
 }
 
-void test_fulltextbook_virtual_destructor()
-{
+void test_fulltextbook_virtual_destructor() {
     static_assert(std::has_virtual_destructor<Book>::value, "");
     std::unique_ptr<Book> p = std::make_unique<FullTextBook>(
-        "The Scarlet Letter", "Hawthorne",
+        "The Scarlet Letter",
+        "Hawthorne",
         std::vector<std::string>{"page 1", "page 2", "page 3", "page 4"}
     );
     p = nullptr;

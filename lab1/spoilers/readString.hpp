@@ -7,7 +7,6 @@ namespace lab1 {
 
 std::string readString();
 
-} // namespace lab1
+}  // namespace lab1
 
 #endif
-

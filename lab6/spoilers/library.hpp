@@ -1,9 +1,9 @@
 #ifndef INCLUDED_LIBRARY_HPP
 #define INCLUDED_LIBRARY_HPP
 
+#include "book.hpp"
 #include <set>
 #include <string>
-#include "book.hpp"
 
 namespace lab6 {
 
@@ -33,6 +33,6 @@ public:
     auto end() const { return books_.end(); }
 };
 
-} // namespace lab6
+}  // namespace lab6
 
-#endif // INCLUDED_LIBRARY_HPP
+#endif  // INCLUDED_LIBRARY_HPP

@@ -1,14 +1,13 @@
 
 #include "library.hpp"
+#include "book.hpp"
 #include <algorithm>
 #include <numeric>
 #include <string>
-#include "book.hpp"
 
 namespace lab4 {
 
-int Library::pagecount() const
-{
+int Library::pagecount() const {
     return std::accumulate(
         books_.begin(),
         books_.end(),
@@ -19,8 +18,7 @@ int Library::pagecount() const
     );
 }
 
-void Library::remove_books_by_author(const std::string& author)
-{
+void Library::remove_books_by_author(const std::string& author) {
     books_.erase(
         std::remove_if(
             books_.begin(),
@@ -33,8 +31,7 @@ void Library::remove_books_by_author(const std::string& author)
     );
 }
 
-void Library::remove_books_by_title(const std::string& title)
-{
+void Library::remove_books_by_title(const std::string& title) {
     books_.erase(
         std::remove_if(
             books_.begin(),
@@ -47,4 +44,4 @@ void Library::remove_books_by_title(const std::string& title)
     );
 }
 
-} // namespace lab4
+}  // namespace lab4

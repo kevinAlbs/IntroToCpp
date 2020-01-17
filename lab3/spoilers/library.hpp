@@ -1,9 +1,9 @@
 #ifndef INCLUDED_LIBRARY_HPP
 #define INCLUDED_LIBRARY_HPP
 
+#include "book.hpp"
 #include <string>
 #include <vector>
-#include "book.hpp"
 
 namespace lab3 {
 
@@ -22,6 +22,6 @@ public:
     void remove_books_by_title(const std::string& title);
 };
 
-} // namespace lab3
+}  // namespace lab3
 
-#endif // INCLUDED_LIBRARY_HPP
+#endif  // INCLUDED_LIBRARY_HPP

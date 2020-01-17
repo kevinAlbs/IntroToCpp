@@ -4,11 +4,10 @@
 
 namespace lab1 {
 
-std::string readString()
-{
+std::string readString() {
     std::string result;
     std::getline(std::cin, result, '\n');
     return result;
 }
 
-} // namespace lab1
+}  // namespace lab1

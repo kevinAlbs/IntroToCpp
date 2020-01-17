@@ -1,32 +1,29 @@
 #include "kindlebook.t.hpp"
-#include "kindlebook.hpp"
 #include "book.hpp"
+#include "kindlebook.hpp"
 
 #include <cassert>
-#include <string>
 #include <sstream>
+#include <string>
 
 using lab7::Book;
 using lab7::KindleBook;
 
-void test_kindlebook_getters()
-{
+void test_kindlebook_getters() {
     KindleBook b("Old Man and the Sea", "Hemingway");
     assert(b.title() == "Old Man and the Sea");
     assert(b.author() == "Hemingway");
     assert(b.pagecount() == 0);
 }
 
-void test_kindlebook_const_getters()
-{
+void test_kindlebook_const_getters() {
     const KindleBook c("A Rebours", "Huysmans");
     assert(c.title() == "A Rebours");
     assert(c.author() == "Huysmans");
     assert(c.pagecount() == 0);
 }
 
-void test_kindlebook_stream_insertion()
-{
+void test_kindlebook_stream_insertion() {
     {
         KindleBook b("The Scarlet Letter", "Hawthorne");
         std::ostringstream oss;
@@ -51,8 +48,7 @@ void test_kindlebook_stream_insertion()
     }
 }
 
-void test_kindlebook_stream_insertion_chaining()
-{
+void test_kindlebook_stream_insertion_chaining() {
     KindleBook b("The Scarlet Letter", "Hawthorne");
     std::ostringstream oss;
     oss << '.' << b << ".\n";

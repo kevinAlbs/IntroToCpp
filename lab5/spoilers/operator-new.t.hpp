@@ -20,5 +20,5 @@ inline size_t& new_count() {
 // a test that fails without move semantics and succeeds with move
 // semantics.
 
-void *operator new(size_t);
-void operator delete(void *, size_t) noexcept;
+void* operator new(size_t);
+void operator delete(void*, size_t) noexcept;

@@ -6,11 +6,10 @@
 
 using lab4::Book;
 using lab4::Library;
-using lab4::would_benefit_from_kindle;
 using lab4::convert_to_kindle;
+using lab4::would_benefit_from_kindle;
 
-void test_kindle_book_template()
-{
+void test_kindle_book_template() {
     auto book = Book("Old Man and the Sea", "Hemingway", 100);
     assert(would_benefit_from_kindle(book));
 
@@ -19,8 +18,7 @@ void test_kindle_book_template()
     assert(!would_benefit_from_kindle(kbook));
 }
 
-void test_kindle_library_template()
-{
+void test_kindle_library_template() {
     Library lib;
     assert(!would_benefit_from_kindle(lib));
 

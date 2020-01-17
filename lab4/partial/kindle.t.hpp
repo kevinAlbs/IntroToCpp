@@ -4,4 +4,4 @@
 void test_kindle_book_template();
 void test_kindle_library_template();
 
-#endif // INCLUDED_KINDLE_T_HPP
+#endif  // INCLUDED_KINDLE_T_HPP

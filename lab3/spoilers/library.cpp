@@ -1,12 +1,11 @@
 
 #include "library.hpp"
-#include <string>
 #include "book.hpp"
+#include <string>
 
 namespace lab3 {
 
-int Library::pagecount() const
-{
+int Library::pagecount() const {
     int result = 0;
     for (const Book& book : books_) {
         result += book.pagecount();
@@ -14,8 +13,7 @@ int Library::pagecount() const
     return result;
 }
 
-void Library::remove_books_by_author(const std::string& author)
-{
+void Library::remove_books_by_author(const std::string& author) {
     for (size_t i = 0; i < books_.size(); ) {
         if (books_[i].author() == author) {
             books_[i].swap(books_.back());
@@ -26,8 +24,7 @@ void Library::remove_books_by_author(const std::string& author)
     }
 }
 
-void Library::remove_books_by_title(const std::string& title)
-{
+void Library::remove_books_by_title(const std::string& title) {
     for (size_t i = 0; i < books_.size(); ) {
         if (books_[i].title() == title) {
             books_[i].swap(books_.back());
@@ -38,4 +35,4 @@ void Library::remove_books_by_title(const std::string& title)
     }
 }
 
-} // namespace lab3
+}  // namespace lab3

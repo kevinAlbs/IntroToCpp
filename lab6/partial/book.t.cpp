@@ -2,29 +2,26 @@
 #include "book.hpp"
 
 #include <cassert>
-#include <string>
 #include <sstream>
+#include <string>
 
 using lab6::Book;
 
-void test_book_getters()
-{
+void test_book_getters() {
     Book b("Old Man and the Sea", "Hemingway", 100);
     assert(b.title() == "Old Man and the Sea");
     assert(b.author() == "Hemingway");
     assert(b.pagecount() == 100);
 }
 
-void test_book_const_getters()
-{
+void test_book_const_getters() {
     const Book c("A Rebours", "Huysmans", 400);
     assert(c.title() == "A Rebours");
     assert(c.author() == "Huysmans");
     assert(c.pagecount() == 400);
 }
 
-void test_book_stream_insertion()
-{
+void test_book_stream_insertion() {
     {
         Book b("The Scarlet Letter", "Hawthorne", 200);
         std::ostringstream oss;
@@ -41,8 +38,7 @@ void test_book_stream_insertion()
     }
 }
 
-void test_book_stream_insertion_chaining()
-{
+void test_book_stream_insertion_chaining() {
     Book b("The Scarlet Letter", "Hawthorne", 200);
     std::ostringstream oss;
     oss << '.' << b << ".\n";

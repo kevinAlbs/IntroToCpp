@@ -1,11 +1,11 @@
-#include "library.hpp"
 #include "fulltextbook.hpp"
 #include "kindlebook.hpp"
+#include "library.hpp"
 
 #include <cassert>
 
-using lab7::KindleBook;
 using lab7::FullTextBook;
+using lab7::KindleBook;
 using lab7::Library;
 
 static std::vector<std::string> two_pages = {
@@ -15,8 +15,7 @@ static std::vector<std::string> three_pages = {
     "page 1", "page 2", "page 3"
 };
 
-void test_library_bookcount()
-{
+void test_library_bookcount() {
     Library lib;
     assert(lib.bookcount() == 0);
 
@@ -31,8 +30,7 @@ void test_library_bookcount()
     assert(lib.bookcount() == 3);
 }
 
-void test_library_pagecount()
-{
+void test_library_pagecount() {
     Library lib;
     assert(lib.pagecount() == 0);
 
@@ -47,8 +45,7 @@ void test_library_pagecount()
     assert(lib.pagecount() == 5);
 }
 
-void test_library_removebooks_by_title()
-{
+void test_library_removebooks_by_title() {
     Library lib;
     lib.add_book(std::make_unique<KindleBook>("Old Man and the Sea", "Hemingway"));
     lib.add_book(std::make_unique<KindleBook>("A Rebours", "Huysmans"));
@@ -63,8 +60,7 @@ void test_library_removebooks_by_title()
     assert(lib.bookcount() == 3);
 }
 
-void test_library_removebooks_by_author()
-{
+void test_library_removebooks_by_author() {
     Library lib;
     lib.add_book(std::make_unique<KindleBook>("Old Man and the Sea", "Hemingway"));
     lib.add_book(std::make_unique<KindleBook>("A Rebours", "Huysmans"));

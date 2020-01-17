@@ -10,9 +10,10 @@ class Book {
     std::string title_;
     std::string author_;
     int pagecount_;
+
 public:
     explicit Book(std::string title, std::string author, int pagecount);
-    
+
     std::string title() const { return title_; }
     std::string author() const { return author_; }
     int pagecount() const { return pagecount_; }
@@ -30,6 +31,6 @@ public:
     }
 };
 
-} // namespace lab6
+}  // namespace lab6
 
-#endif // INCLUDED_BOOK_HPP
+#endif  // INCLUDED_BOOK_HPP

@@ -5,24 +5,21 @@
 #include <cstdio>
 #include <string>
 
-static void test_book_getters()
-{
+static void test_book_getters() {
     lab3::Book b("Old Man and the Sea", "Hemingway", 100);
     assert(b.title() == "Old Man and the Sea");
     assert(b.author() == "Hemingway");
     assert(b.pagecount() == 100);
 }
 
-static void test_constness_of_book_getters()
-{
+static void test_constness_of_book_getters() {
     const lab3::Book c("A Rebours", "Huysmans", 400);
     assert(c.title() == "A Rebours");
     assert(c.author() == "Huysmans");
     assert(c.pagecount() == 400);
 }
 
-static void test_book_swap()
-{
+static void test_book_swap() {
     lab3::Book b1("Old Man and the Sea", "Hemingway", 100);
     lab3::Book b2("A Rebours", "Huysmans", 400);
     b1.swap(b2);
@@ -34,8 +31,7 @@ static void test_book_swap()
     assert(b2.pagecount() == 100);
 }
 
-static void test_library_addbook()
-{
+static void test_library_addbook() {
     lab3::Library lib;
     assert(lib.bookcount() == 0);
     assert(lib.pagecount() == 0);
@@ -50,8 +46,7 @@ static void test_library_addbook()
     assert(lib.pagecount() == 500);
 }
 
-static void test_library_removebooks()
-{
+static void test_library_removebooks() {
     using namespace lab3;
 
     Library lib;
@@ -66,8 +61,7 @@ static void test_library_removebooks()
     assert(lib.bookcount() == 2);
 }
 
-int main()
-{
+int main() {
     test_book_getters();
     test_constness_of_book_getters();
     test_book_swap();

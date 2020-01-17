@@ -4,29 +4,26 @@
 
 #include <cassert>
 #include <cstdio>
-#include <string>
 #include <sstream>
+#include <string>
 
 using lab5::Book;
 
-void test_book_getters()
-{
+void test_book_getters() {
     Book b("The Curious Incident of the Dog in the Night-Time", "Haddon", 226);
     assert(b.title() == "The Curious Incident of the Dog in the Night-Time");
     assert(b.author() == "Haddon");
     assert(b.pagecount() == 226);
 }
 
-void test_book_const_getters()
-{
+void test_book_const_getters() {
     const Book c("A Rebours", "Huysmans", 400);
     assert(c.title() == "A Rebours");
     assert(c.author() == "Huysmans");
     assert(c.pagecount() == 400);
 }
 
-void test_book_stream_insertion()
-{
+void test_book_stream_insertion() {
     {
         Book b("The Scarlet Letter", "Hawthorne", 200);
         std::ostringstream oss;
@@ -43,8 +40,7 @@ void test_book_stream_insertion()
     }
 }
 
-void test_book_stream_insertion_chaining()
-{
+void test_book_stream_insertion_chaining() {
     Book b("The Scarlet Letter", "Hawthorne", 200);
     std::ostringstream oss;
     oss << '.' << b << ".\n";
@@ -52,8 +48,7 @@ void test_book_stream_insertion_chaining()
     assert(representation == ".The Scarlet Letter by Hawthorne (200 pages).\n");
 }
 
-void test_book_move_semantics()
-{
+void test_book_move_semantics() {
     new_called() = false;
     std::string title = "The Curious Incident of the Dog in the Night-Time";
     assert(new_called());
@@ -67,4 +62,3 @@ void test_book_move_semantics()
 
     assert(b.title() == "The Curious Incident of the Dog in the Night-Time");
 }
-

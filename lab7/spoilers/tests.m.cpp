@@ -1,11 +1,10 @@
-#include "kindlebook.t.hpp"
 #include "fulltextbook.t.hpp"
+#include "kindlebook.t.hpp"
 #include "library.t.hpp"
 
 #include <cstdio>
 
-int main()
-{
+int main() {
     test_kindlebook_getters();
     test_kindlebook_const_getters();
     test_kindlebook_stream_insertion();

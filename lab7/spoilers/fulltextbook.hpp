@@ -15,11 +15,9 @@ class FullTextBook : public Book {
 
 public:
     explicit FullTextBook(std::string title, std::string author, std::vector<std::string> pages)
-        : Book(std::move(title), std::move(author)), pages_(std::move(pages))
-    {
-    }
+        : Book(std::move(title), std::move(author)), pages_(std::move(pages)) {}
 
     std::string get_page(int n) const;
 };
 
-} // namespace lab7
+}  // namespace lab7

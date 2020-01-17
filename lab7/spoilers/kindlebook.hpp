@@ -19,4 +19,4 @@ public:
         : Book(std::move(title), std::move(author)) {}
 };
 
-} // namespace lab7
+}  // namespace lab7

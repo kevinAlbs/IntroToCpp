@@ -8,6 +8,6 @@ namespace lab2 {
 bool is_palindrome(const std::string& s);
 void reverse_in_place(std::string& s);
 
-} // namespace lab2
+}  // namespace lab2
 
 #endif

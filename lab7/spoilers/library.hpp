@@ -1,8 +1,8 @@
 #pragma once
 
+#include "book.hpp"
 #include <string>
 #include <vector>
-#include "book.hpp"
 
 namespace lab7 {
 
@@ -23,4 +23,4 @@ public:
     void remove_books_by_title(const std::string& title);
 };
 
-} // namespace lab7
+}  // namespace lab7

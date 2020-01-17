@@ -1,15 +1,12 @@
-#include <string>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <string>
 
 #include "readString.hpp"
 
-
 // YOUR CODE GOES HERE
 
-
-int main()
-{
+int main() {
     std::cout << "Enter a string: " << std::flush;
     std::string s = lab1::readString();
 

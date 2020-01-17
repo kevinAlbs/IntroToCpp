@@ -4,8 +4,7 @@
 
 #include <cstdio>
 
-int main()
-{
+int main() {
     test_book_getters();
     test_book_const_getters();
     test_book_stream_insertion();

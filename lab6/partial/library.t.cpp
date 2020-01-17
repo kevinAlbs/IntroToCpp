@@ -6,8 +6,7 @@
 using lab6::Book;
 using lab6::Library;
 
-void test_library_addbook()
-{
+void test_library_addbook() {
     Library lib;
     assert(lib.bookcount() == 0);
     assert(lib.pagecount() == 0);
@@ -22,8 +21,7 @@ void test_library_addbook()
     assert(lib.pagecount() == 500);
 }
 
-void test_library_removebooks_by_title()
-{
+void test_library_removebooks_by_title() {
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));
@@ -38,8 +36,7 @@ void test_library_removebooks_by_title()
     assert(lib.bookcount() == 3);
 }
 
-void test_library_removebooks_by_author()
-{
+void test_library_removebooks_by_author() {
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));
@@ -52,8 +49,7 @@ void test_library_removebooks_by_author()
     assert(lib.bookcount() == 2);
 }
 
-void test_library_iteration()
-{
+void test_library_iteration() {
     // This test is subtly different from the same test in Lab 4.
     // Now that a book's author is indexed for quick lookup, it would
     // be dangerous to allow the client to modify the author of a book
@@ -73,8 +69,7 @@ void test_library_iteration()
     assert(initials == "HHHHH");
 }
 
-void test_library_const_iteration()
-{
+void test_library_const_iteration() {
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));

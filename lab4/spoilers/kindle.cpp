@@ -6,13 +6,11 @@
 
 namespace lab4 {
 
-Book convert_to_kindle(const Book& b)
-{
+Book convert_to_kindle(const Book& b) {
     return Book(b.title(), b.author(), 0);
 }
 
-Library convert_to_kindle(const Library& lib)
-{
+Library convert_to_kindle(const Library& lib) {
     Library result;
     std::for_each(
         lib.begin(),
@@ -24,4 +22,4 @@ Library convert_to_kindle(const Library& lib)
     return result;
 }
 
-} // namespace lab4
+}  // namespace lab4

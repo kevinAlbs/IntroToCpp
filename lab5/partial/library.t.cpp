@@ -6,8 +6,7 @@
 using lab5::Book;
 using lab5::Library;
 
-void test_library_addbook()
-{
+void test_library_addbook() {
     Library lib;
     assert(lib.bookcount() == 0);
     assert(lib.pagecount() == 0);
@@ -22,8 +21,7 @@ void test_library_addbook()
     assert(lib.pagecount() == 326);
 }
 
-void test_library_removebooks_by_title()
-{
+void test_library_removebooks_by_title() {
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));
@@ -38,8 +36,7 @@ void test_library_removebooks_by_title()
     assert(lib.bookcount() == 3);
 }
 
-void test_library_removebooks_by_author()
-{
+void test_library_removebooks_by_author() {
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));
@@ -52,8 +49,7 @@ void test_library_removebooks_by_author()
     assert(lib.bookcount() == 2);
 }
 
-void test_library_iteration()
-{
+void test_library_iteration() {
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));
@@ -67,8 +63,7 @@ void test_library_iteration()
     assert(initials == "HHHHH");
 }
 
-void test_library_const_iteration()
-{
+void test_library_const_iteration() {
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));

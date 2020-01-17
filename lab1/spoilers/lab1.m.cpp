@@ -1,12 +1,11 @@
-#include <string>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <string>
 
 #include "readString.hpp"
 
-void reverse_in_place(std::string& s)
-{
-    for (size_t i=0; i < s.size(); ++i) {
+void reverse_in_place(std::string& s) {
+    for (size_t i = 0; i < s.size(); ++i) {
         size_t j = s.size() - i - 1;
         if (i < j) {
             std::swap(s[i], s[j]);
@@ -14,15 +13,13 @@ void reverse_in_place(std::string& s)
     }
 }
 
-bool is_palindrome(const std::string& s)
-{
+bool is_palindrome(const std::string& s) {
     std::string t = s;
     reverse_in_place(t);
     return (s == t);
 }
 
-int main()
-{
+int main() {
     std::cout << "Enter a string: " << std::flush;
     std::string s = lab1::readString();
 

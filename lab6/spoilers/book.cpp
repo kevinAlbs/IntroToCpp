@@ -7,8 +7,7 @@
 namespace lab6 {
 
 Book::Book(std::string title, std::string author, int pagecount)
-    : title_(std::move(title)), author_(std::move(author)), pagecount_(pagecount)
-{}
+    : title_(std::move(title)), author_(std::move(author)), pagecount_(pagecount) {}
 
 void Book::swap(Book& rhs) {
     std::swap(title_, rhs.title_);
@@ -21,4 +20,4 @@ void Book::print(std::ostream& os) const {
     os << " (" << pagecount_ << " pages)";
 }
 
-} // namespace lab6
+}  // namespace lab6
