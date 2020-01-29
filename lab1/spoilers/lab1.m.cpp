@@ -4,7 +4,8 @@
 
 #include "readString.hpp"
 
-void reverse_in_place(std::string& s) {
+void reverse_in_place(std::string* param) {
+    std::string& s = *param;
     for (size_t i = 0; i < s.size(); ++i) {
         size_t j = s.size() - i - 1;
         if (i < j) {
@@ -15,7 +16,7 @@ void reverse_in_place(std::string& s) {
 
 bool is_palindrome(const std::string& s) {
     std::string t = s;
-    reverse_in_place(t);
+    reverse_in_place(&t);
     return (s == t);
 }
 
@@ -27,7 +28,7 @@ int main() {
         std::cout << "The string " << std::quoted(s) << " is a palindrome.\n";
     } else {
         std::cout << "The string " << std::quoted(s) << " is NOT a palindrome.\n";
-        reverse_in_place(s);
+        reverse_in_place(&s);
         std::cout << "Reversed, it is " << std::quoted(s) << "\n";
     }
 }

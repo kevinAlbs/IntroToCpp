@@ -26,7 +26,8 @@ does not yet exist. Study the code to see what `lab2.hpp` ought to declare.
 You will write two functions, declared in `lab2.hpp` and defined in
 `lab2.cpp`:
 
-    - `lab2::reverse_in_place(s)` reverses the string `s` in place.
+    - `lab2::reverse_in_place(&s)` reverses the string `s` in place.
+      Since it modifies its parameter, we're going to use pass-by-pointer.
 
     - `lab2::is_palindrome(s)` returns a `bool` (`true` or `false`)
       depending on whether the given string is a palindrome or not.

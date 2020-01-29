@@ -13,7 +13,7 @@ int main() {
         std::cout << "The string " << std::quoted(s) << " is a palindrome.\n";
     } else {
         std::cout << "The string " << std::quoted(s) << " is NOT a palindrome.\n";
-        lab2::reverse_in_place(s);
+        lab2::reverse_in_place(&s);
         std::cout << "Reversed, it is " << std::quoted(s) << "\n";
     }
 }

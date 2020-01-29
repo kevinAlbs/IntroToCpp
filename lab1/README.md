@@ -23,7 +23,8 @@ does not yet exist. Study the code to see what functions you need to add.
 
 You will write two new functions, defined in `lab1.m.cpp`:
 
-    - `reverse_in_place(s)` reverses the string `s` in place.
+    - `reverse_in_place(&s)` reverses the string `s` in place.
+      Since it modifies its parameter, we're going to use pass-by-pointer.
 
     - `is_palindrome(s)` returns a `bool` (`true` or `false`)
       depending on whether the given string is a palindrome or not.
