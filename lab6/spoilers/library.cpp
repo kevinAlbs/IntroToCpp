@@ -24,19 +24,21 @@ void Library::remove_books_by_author(const std::string& author) {
     books_.erase(range.first, range.second);
 }
 
-void Library::remove_books_by_title(const std::string& title) {
-    auto erase_if = [](auto& set, auto pred) {
-        auto it = set.begin();
-        auto last = set.end();
-        while (it != last) {
-            if (pred(*it)) {
-                it = set.erase(it);
-            } else {
-                ++it;
-            }
+template<class Set, class Predicate>
+static void erase_if(Set& set, Predicate pred)
+{
+    auto it = set.begin();
+    while (it != set.end()) {
+        if (pred(*it)) {
+            it = set.erase(it);
+        } else {
+            ++it;
         }
-    };
-    erase_if(
+    }
+}
+
+void Library::remove_books_by_title(const std::string& title) {
+    lab6::erase_if(
         books_,
         [&](const Book& b) {
             return b.title() == title;
