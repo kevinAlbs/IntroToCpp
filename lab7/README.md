@@ -1,6 +1,6 @@
 ## Lab 7: Associative containers
 
-In this lab, you'll re-implement parts of Book and Library
+In this lab, you'll re-implement parts of Library
 using associative containers.
 It should take you about an hour.
 
