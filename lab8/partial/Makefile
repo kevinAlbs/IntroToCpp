@@ -1,5 +1,5 @@
 CXXFLAGS= -std=c++14 -O2 -W -Wall -Wextra -pedantic
-OBJFILES= book.o book.t.o tests.m.o
+OBJFILES= book.o fulltextbook.o kindlebook.o library.o fulltextbook.t.o kindlebook.t.o library.t.o tests.m.o
 
 test: tests
 	./tests
@@ -13,4 +13,4 @@ tests: $(OBJFILES)
 clean:
 	rm -f $(OBJFILES) tests
 
-.PHONY: clean test
+.PHONY: clean

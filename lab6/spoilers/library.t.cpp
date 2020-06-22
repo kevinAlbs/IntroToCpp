@@ -16,9 +16,9 @@ void test_library_addbook() {
     assert(lib.bookcount() == 1);
     assert(lib.pagecount() == 100);
 
-    lib.add_book(Book("A Rebours", "Huysmans", 400));
+    lib.add_book(Book("The Curious Incident of the Dog in the Night-Time", "Haddon", 226));
     assert(lib.bookcount() == 2);
-    assert(lib.pagecount() == 500);
+    assert(lib.pagecount() == 326);
 }
 
 void test_library_removebooks_by_title() {
@@ -50,20 +50,14 @@ void test_library_removebooks_by_author() {
 }
 
 void test_library_iteration() {
-    // This test is subtly different from the same test in Lab 4.
-    // Now that a book's author is indexed for quick lookup, it would
-    // be dangerous to allow the client to modify the author of a book
-    // in the library. Therefore, this test no longer assumes that
-    // the elements of a non-const `Library` are themselves non-const.
-
     Library lib;
     lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
     lib.add_book(Book("A Rebours", "Huysmans", 400));
     lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
     lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
-    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
+    lib.add_book(Book("The Curious Incident of the Dog in the Night-Time", "Haddon", 226));
     std::string initials = "";
-    for (const Book& b : lib) {
+    for (Book& b : lib) {
         initials += b.author()[0];
     }
     assert(initials == "HHHHH");
@@ -75,7 +69,7 @@ void test_library_const_iteration() {
     lib.add_book(Book("A Rebours", "Huysmans", 400));
     lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
     lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
-    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
+    lib.add_book(Book("The Curious Incident of the Dog in the Night-Time", "Haddon", 226));
     std::string initials = "";
     for (const Book& b : static_cast<const Library&>(lib)) {
         initials += b.author()[0];

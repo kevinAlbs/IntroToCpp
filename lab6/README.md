@@ -1,16 +1,13 @@
-## Lab 6: Associative containers
+## Lab 6: Move semantics
 
-In this lab, you'll re-implement parts of Book and Library
-using associative containers.
-It should take you about an hour.
+In this lab, you'll add move semantics to Book and Library.
+It should take you about 30 minutes.
 
 Your code should make proper use of
 
     - everything from Lab 5, plus
 
-    - associative STL containers
-
-    - custom comparators
+    - rvalue references and `std::move`
 
 All your code should be in the `lab6` namespace.
 
@@ -19,57 +16,71 @@ All your code should be in the `lab6` namespace.
 A partial solution is present in the `partial/` directory.
 You should start there.
 
-Run `make` to build the project. `make` will complain that there is no way
-to build `library.o` because `library.cpp` does not exist.
+Run `make` to build the project. The compiler will try to compile `tests.m.cpp`
+and immediately complain that the header file `library.cpp` was included but
+does not yet exist.
 
 
-## Implement an efficient `remove_books_by_author`
+## 1. Use move semantics in the constructor of `Book`
 
-We've received an updated priority from our customer
-(Stoneman & Black LLC).
-They anticipate needing to quickly remove all books by
-a single author. Removing books by title is a less common
-operation and they don't mind if it takes relatively longer.
+In the spoiler solution for Lab 5, running
 
-Modify your class `Library` to store `Book` objects in
-a `std::multiset` rather than a `std::vector<Book>`.
-The required member functions remain the same:
+    Book catch22("Catch-22", "Heller", 544);
 
-| Name                           | Purpose                    |
-| :----------------------------- | :------------------------- |
-| Library()                      | Constructor                |
-| add_book(Book)                 | Add a book to the library  |
-| bookcount()                    | Return the number of books in the library |
-| pagecount()                    | Return the total number of pages in the library |
-| remove_books_by_title(title)   | Remove all books in the library with the given title |
-| remove_books_by_author(author) | Efficiently remove all books in the library with the given author |
+will construct `std::string("Catch-22")` and pass that temporary
+by const reference to the constructor of `Book`, which will copy-construct
+`title_` from that temporary. This means two heap allocations when we
+could have used only one.
 
-You should instantiate `std::multiset` with a custom comparator which compares
-only `book.author()`. Finding all books by a single author should now be 
-achievable in O(lg n) time.
+Rewrite the constructor of `Book` to perform fewer heap allocations
+in this case.
 
-In `remove_books_by_title`, it is acceptable to use an O(n) algorithm.
-As explained in lecture, you _cannot_ use the erase-remove idiom on a 
-`std::multiset`; you will have to use the `erase` method of `std::multiset`
-in a loop.
+There are at least three ways to approach this task:
 
-Consider writing a helper function (or function template) named `erase_if`.
+- Replace the existing constructor's `const std::string&` parameters with `std::string` parameters,
+  and then `std::move` those string parameters into your member initializers.
+  This is the simplest and most practically relevant approach.
+
+- Add constructors taking `std::string&&`, in addition to the constructors taking `const std::string&`.
+  This approach is less simple, but will better exercise your understanding of rvalue references.
+
+- Replace the existing constructor with a _constructor template_ that can accept either `string` or `const char *` directly.
+  You are not expected to be able to do this correctly. It is also unlikely to be a good idea in practice.
+
+
+## 2. Use move semantics in `Library::add_book`
+
+Replace Lab 5's `Library::add_book(const Book&)` with either
+`Library::add_book(Book)` or `Library::add_book(Book&&)`.
+
+Be prepared to explain why you chose the implementation you did.
 
 
 ## Testing
 
 The file tests.m.cpp contains _unit tests_ for this lab. Your code should pass
-all the provided tests. Consider writing additional unit tests.
+all the provided tests.
+
+In this particular lab, the partial solution in `partial/` will actually build
+successfully. That's because move semantics is a pure optimization: the observable
+behavior of the code should remain the same after your changes, but the performance
+of the code (as measured in heap allocations and deallocations) should improve.
+
+The unit tests use an obscure feature of C++ (out of scope for this course)
+to hook into `new` and `delete` and verify that your constructor for `Book`
+does not perform unnecessary allocations. You are not expected to understand
+operator-new.t.cpp, and you are specifically expected _not_ to write code
+like it in production!
 
 
 ## Bonus
 
-Think about how you might permit the client to _change_ the author of a book
-in the library.
+Rewrite `convert_to_kindle` in move-semantic style.
 
-Think about how you might speed up `remove_books_by_title` without slowing down
-`remove_books_by_author`.
+Rewrite `would_benefit_from_kindle` in move-semantic style.
+(Is any change needed? Why or why not?)
 
-The problem of doing lookups by two different keys is addressed by
-special-purpose data structure libraries such as
-[Boost.MultiIndex](https://theboostcpplibraries.com/boost.multiindex).
+Observe that when you construct `std::string("Catch-22")`, the
+runtime doesn't do a heap allocation, but when you construct
+`std::string("The Curious Incident of the Dog in the Night-Time")`,
+it does. What's the deal with that?

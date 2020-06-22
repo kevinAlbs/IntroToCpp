@@ -4,7 +4,7 @@
 #include "book.hpp"
 #include "library.hpp"
 
-namespace lab4 {
+namespace lab5 {
 
 Book convert_to_kindle(const Book&);
 Library convert_to_kindle(const Library&);
@@ -14,6 +14,6 @@ bool would_benefit_from_kindle(const T& object) {
     return object.pagecount() > 0;
 }
 
-}  // namespace lab4
+}  // namespace lab5
 
 #endif  // INCLUDED_KINDLE_HPP

@@ -1,57 +1,33 @@
-#include "fulltextbook.hpp"
-#include "kindlebook.hpp"
+#include "book.hpp"
 #include "library.hpp"
 
 #include <cassert>
 
-using lab7::FullTextBook;
-using lab7::KindleBook;
+using lab7::Book;
 using lab7::Library;
 
-static std::vector<std::string> two_pages = {
-    "page 1", "page 2"
-};
-static std::vector<std::string> three_pages = {
-    "page 1", "page 2", "page 3"
-};
-
-void test_library_bookcount() {
+void test_library_addbook() {
     Library lib;
     assert(lib.bookcount() == 0);
-
-    auto pb = std::make_unique<FullTextBook>("Old Man and the Sea", "Hemingway", two_pages);
-    lib.add_book(std::move(pb));
-    assert(lib.bookcount() == 1);
-
-    lib.add_book(std::make_unique<KindleBook>("A Rebours", "Huysmans"));
-    assert(lib.bookcount() == 2);
-
-    lib.add_book(std::make_unique<FullTextBook>("A Rebours", "Huysmans", three_pages));
-    assert(lib.bookcount() == 3);
-}
-
-void test_library_pagecount() {
-    Library lib;
     assert(lib.pagecount() == 0);
 
-    auto pb = std::make_unique<FullTextBook>("Old Man and the Sea", "Hemingway", two_pages);
-    lib.add_book(std::move(pb));
-    assert(lib.pagecount() == 2);
+    auto b = Book("Old Man and the Sea", "Hemingway", 100);
+    lib.add_book(b);
+    assert(lib.bookcount() == 1);
+    assert(lib.pagecount() == 100);
 
-    lib.add_book(std::make_unique<KindleBook>("A Rebours", "Huysmans"));
-    assert(lib.pagecount() == 2);
-
-    lib.add_book(std::make_unique<FullTextBook>("A Rebours", "Huysmans", three_pages));
-    assert(lib.pagecount() == 5);
+    lib.add_book(Book("A Rebours", "Huysmans", 400));
+    assert(lib.bookcount() == 2);
+    assert(lib.pagecount() == 500);
 }
 
 void test_library_removebooks_by_title() {
     Library lib;
-    lib.add_book(std::make_unique<KindleBook>("Old Man and the Sea", "Hemingway"));
-    lib.add_book(std::make_unique<KindleBook>("A Rebours", "Huysmans"));
-    lib.add_book(std::make_unique<KindleBook>("I Am a Strange Loop", "Hofstadter"));
-    lib.add_book(std::make_unique<KindleBook>("Death in the Afternoon", "Hemingway"));
-    lib.add_book(std::make_unique<KindleBook>("A Farewell to Arms", "Hemingway"));
+    lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
+    lib.add_book(Book("A Rebours", "Huysmans", 400));
+    lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
+    lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
+    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
     lib.remove_books_by_title("A Farewell to Arms");
     assert(lib.bookcount() == 4);
     lib.remove_books_by_title("Catch-22");  // should not be found
@@ -62,13 +38,47 @@ void test_library_removebooks_by_title() {
 
 void test_library_removebooks_by_author() {
     Library lib;
-    lib.add_book(std::make_unique<KindleBook>("Old Man and the Sea", "Hemingway"));
-    lib.add_book(std::make_unique<KindleBook>("A Rebours", "Huysmans"));
-    lib.add_book(std::make_unique<KindleBook>("I Am a Strange Loop", "Hofstadter"));
-    lib.add_book(std::make_unique<KindleBook>("Death in the Afternoon", "Hemingway"));
-    lib.add_book(std::make_unique<KindleBook>("A Farewell to Arms", "Hemingway"));
+    lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
+    lib.add_book(Book("A Rebours", "Huysmans", 400));
+    lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
+    lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
+    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
     lib.remove_books_by_author("Hemingway");
     assert(lib.bookcount() == 2);
     lib.remove_books_by_author("Hemingway");
     assert(lib.bookcount() == 2);
+}
+
+void test_library_iteration() {
+    // This test is subtly different from the same test in Lab 4.
+    // Now that a book's author is indexed for quick lookup, it would
+    // be dangerous to allow the client to modify the author of a book
+    // in the library. Therefore, this test no longer assumes that
+    // the elements of a non-const `Library` are themselves non-const.
+
+    Library lib;
+    lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
+    lib.add_book(Book("A Rebours", "Huysmans", 400));
+    lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
+    lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
+    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
+    std::string initials = "";
+    for (const Book& b : lib) {
+        initials += b.author()[0];
+    }
+    assert(initials == "HHHHH");
+}
+
+void test_library_const_iteration() {
+    Library lib;
+    lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
+    lib.add_book(Book("A Rebours", "Huysmans", 400));
+    lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
+    lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
+    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
+    std::string initials = "";
+    for (const Book& b : static_cast<const Library&>(lib)) {
+        initials += b.author()[0];
+    }
+    assert(initials == "HHHHH");
 }

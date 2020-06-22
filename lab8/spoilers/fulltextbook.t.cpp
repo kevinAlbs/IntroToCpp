@@ -8,8 +8,8 @@
 #include <type_traits>
 #include <vector>
 
-using lab7::Book;
-using lab7::FullTextBook;
+using lab8::Book;
+using lab8::FullTextBook;
 
 void test_fulltextbook_getters() {
     FullTextBook b("Old Man and the Sea", "Hemingway", {"page 1", "page 2"});

@@ -1,13 +1,18 @@
-## Lab 5: Move semantics
+## Lab 5: Kindle
 
-In this lab, you'll add move semantics to Book and Library.
-It should take you about 30 minutes.
+In this lab, you'll re-implement parts of Book and Library,
+and test your skills with function overloading and function templates.
+It should take you about 60 minutes.
 
 Your code should make proper use of
 
     - everything from Lab 4, plus
 
-    - rvalue references and `std::move`
+    - function templates
+
+    - function overloading
+
+    - basic use of iterators and STL algorithms
 
 All your code should be in the `lab5` namespace.
 
@@ -16,71 +21,115 @@ All your code should be in the `lab5` namespace.
 A partial solution is present in the `partial/` directory.
 You should start there.
 
-Run `make` to build the project. The compiler will try to compile `tests.m.cpp`
-and immediately complain that the header file `library.cpp` was included but
+#### This lab has two parts
+
+This lab has two parts. You can unit-test the parts individually
+with `make p1`, `make p2`; or just `make` to build all of the
+tests together.
+
+First, run `make` to build the whole project. The compiler will try to compile `tests.m.cpp`
+and immediately complain that the header file `kindle.t.hpp` was included but
 does not yet exist.
 
+Now, run `make p1` to build just Part 1. The compiler will try to compile `tests.m.cpp`
+and complain that it found no overload of `operator<<` callable with a `Book`.
+On my machine, this triggers a 300-line cascade of error messages. Remember to
+look at the first error message, not the last one!
 
-## 1. Use move semantics in the constructor of `Book`
+    library.t.cpp:60:18: error: invalid range expression of type 'lab5::Library'; no viable 'begin' function available
+        for (Book& b : lib) {
+                     ^ ~~~
 
-In the spoiler solution for Lab 4, running
+## 1. Make `Library` use more iterators
 
-    Book catch22("Catch-22", "Heller", 544);
+- 1a. Make `Library` an iterable range of `Book`s.
 
-will construct `std::string("Catch-22")` and pass that temporary
-by const reference to the constructor of `Book`, which will copy-construct
-`title_` from that temporary. This means two heap allocations when we
-could have used only one.
+- 1b. Use more STL algorithms in `Library`.
 
-Rewrite the constructor of `Book` to perform fewer heap allocations
-in this case.
+Class `Library` has the following member functions, most of which
+are the same as in Lab 3:
 
-There are at least three ways to approach this task:
+| Name                           | Purpose                    |
+| :----------------------------- | :------------------------- |
+| Library()                      | Constructor                |
+| add_book(Book)                 | Add a book to the library  |
+| bookcount()                    | Return the number of books in the library |
+| pagecount()                    | Return the total number of pages in the library |
+| remove_books_by_title(title)   | Remove all books in the library with the given title |
+| remove_books_by_author(author) | Remove all books in the library with the given author |
+| begin()                        | Return an iterator to the first book in the library |
+| end()                          | Return an iterator one past the last book in the library |
 
-- Replace the existing constructor's `const std::string&` parameters with `std::string` parameters,
-  and then `std::move` those string parameters into your member initializers.
-  This is the simplest and most practically relevant approach.
+Your `Library` will probably have a private data member `books_`
+of type `std::vector<Book>`.
 
-- Add constructors taking `std::string&&`, in addition to the constructors taking `const std::string&`.
-  This approach is less simple, but will better exercise your understanding of rvalue references.
+For `begin()` and `end()`, you should follow our guidelines for const-correct code.
+Should I be able to iterate over the books in a `Library`? in a `const Library`?
+Should I be able to modify the books in a `Library`? in a `const Library`?
+Should calling `begin` of a `const Library` and a non-const `Library` have exactly the same behavior?
+(If not: Make `begin` an overload set.)
 
-- Replace the existing constructor with a _constructor template_ that can accept either `string` or `const char *` directly.
-  You are not expected to be able to do this correctly. It is also unlikely to be a good idea in practice.
+For the complicated functions such as `pagecount` and `remove_books_by_title`,
+you should *not* cut and paste your code from Lab 3. Instead, you should reimplement
+those functions from scratch, using STL algorithms such as `std::accumulate`
+and `std::remove_if`.
+
+Use the erase-remove idiom in `remove_books_by_title` and `remove_books_by_author`.
 
 
-## 2. Use move semantics in `Library::add_book`
+## 2. Implement `kindle` functionality
 
-Replace Lab 4's `Library::add_book(const Book&)` with either
-`Library::add_book(Book)` or `Library::add_book(Book&&)`.
+If you've done the bonus to Lab 3, you're one-third of the way done with this part!
 
-Be prepared to explain why you chose the implementation you did.
+### 2a. `convert_to_kindle` function overload set
+
+In "kindle.hpp" and "kindle.cpp", implement a function overload set `convert_to_kindle`.
+When called on a `Book`, `convert_to_kindle` should return a new `Book` that's equivalent
+except that its page count is zero.
+
+    Book b("Old Man and the Sea", "Hemingway", 100);
+    Book k = convert_to_kindle(b);
+    assert(k.title() == "Old Man and the Sea");
+    assert(k.author() == "Hemingway");
+    assert(k.pagecount() == 0);
+
+When called on a `Library`, `convert_to_kindle` should return a new `Library` that
+contains the same number of `Book`s, all individually converted to kindle.
+
+    Library lib;
+    lib.add_book(Book("Old Man and the Sea", "Hemingway", 100));
+    Library k = convert_to_kindle(lib);
+    assert(k.bookcount() == 1);
+    assert(k.pagecount() == 0);
+
+
+### 2b. `would_benefit_from_kindle` function template
+
+In "kindle.hpp", implement a function template `would_benefit_from_kindle`.
+When called on any object with a `.pagecount()` method, this function should
+return `true` if and only if the object's page count is greater than zero.
+
+    Library lib;
+    Book book("Old Man and the Sea", "Hemingway", 100);
+    assert(would_benefit_from_kindle(book));
+    assert(!would_benefit_from_kindle(convert_to_kindle(book)));
+    lib.add_book(book);
+    assert(would_benefit_from_kindle(lib));
+    assert(!would_benefit_from_kindle(convert_to_kindle(lib)));
 
 
 ## Testing
 
 The file tests.m.cpp contains _unit tests_ for this lab. Your code should pass
-all the provided tests.
-
-In this particular lab, the partial solution in `partial/` will actually build
-successfully. That's because move semantics is a pure optimization: the observable
-behavior of the code should remain the same after your changes, but the performance
-of the code (as measured in heap allocations and deallocations) should improve.
-
-The unit tests use an obscure feature of C++ (out of scope for this course)
-to hook into `new` and `delete` and verify that your constructor for `Book`
-does not perform unnecessary allocations. You are not expected to understand
-operator-new.t.cpp, and you are specifically expected _not_ to write code
-like it in production!
-
+all the provided tests. Consider writing additional unit tests.
 
 ## Bonus
 
-Rewrite `convert_to_kindle` in move-semantic style.
+If you have time, implement a member function template `Library::remove_books_if(Pred)`
+that takes any arbitrary predicate (e.g. as a lambda) and removes books that match
+the predicate.
 
-Rewrite `would_benefit_from_kindle` in move-semantic style.
-(Is any change needed? Why or why not?)
+Then, reimplement `remove_books_by_author` and `remove_books_by_title` as one-liners
+that simply call `remove_books_if` with different predicates.
 
-Observe that when you construct `std::string("Catch-22")`, the
-runtime doesn't do a heap allocation, but when you construct
-`std::string("The Curious Incident of the Dog in the Night-Time")`,
-it does. What's the deal with that?
+Consider whether `remove_books_if` should be part of your `Library`'s public API.

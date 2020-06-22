@@ -4,7 +4,7 @@
 #include "library.hpp"
 #include <algorithm>
 
-namespace lab4 {
+namespace lab5 {
 
 Book convert_to_kindle(const Book& b) {
     return Book(b.title(), b.author(), 0);
@@ -22,4 +22,4 @@ Library convert_to_kindle(const Library& lib) {
     return result;
 }
 
-}  // namespace lab4
+}  // namespace lab5

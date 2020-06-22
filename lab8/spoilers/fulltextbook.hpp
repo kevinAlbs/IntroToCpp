@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace lab7 {
+namespace lab8 {
 
 class FullTextBook : public Book {
     std::vector<std::string> pages_;
@@ -20,4 +20,4 @@ public:
     std::string get_page(int n) const;
 };
 
-}  // namespace lab7
+}  // namespace lab8

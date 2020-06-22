@@ -4,10 +4,10 @@
 
 #include <cassert>
 
-using lab4::Book;
-using lab4::Library;
-using lab4::convert_to_kindle;
-using lab4::would_benefit_from_kindle;
+using lab5::Book;
+using lab5::Library;
+using lab5::convert_to_kindle;
+using lab5::would_benefit_from_kindle;
 
 void test_kindle_book_template() {
     auto book = Book("Old Man and the Sea", "Hemingway", 100);

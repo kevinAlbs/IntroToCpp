@@ -5,15 +5,15 @@
 #include <numeric>
 #include <string>
 
-namespace lab4 {
+namespace lab8 {
 
 int Library::pagecount() const {
     return std::accumulate(
         books_.begin(),
         books_.end(),
         0,
-        [](int sum, const Book& b) {
-            return sum + b.pagecount();
+        [](int sum, const std::unique_ptr<Book>& b) {
+            return sum + b->pagecount();
         }
     );
 }
@@ -23,8 +23,8 @@ void Library::remove_books_by_author(const std::string& author) {
         std::remove_if(
             books_.begin(),
             books_.end(),
-            [&](const Book& b) {
-                return b.author() == author;
+            [&](const auto& b) {
+                return b->author() == author;
             }
         ),
         books_.end()
@@ -36,12 +36,12 @@ void Library::remove_books_by_title(const std::string& title) {
         std::remove_if(
             books_.begin(),
             books_.end(),
-            [&](const Book& b) {
-                return b.title() == title;
+            [&](const auto& b) {
+                return b->title() == title;
             }
         ),
         books_.end()
     );
 }
 
-}  // namespace lab4
+}  // namespace lab8

@@ -1,29 +1,32 @@
-#ifndef INCLUDED_BOOK_HPP
-#define INCLUDED_BOOK_HPP
+#pragma once
 
 #include <iosfwd>
 #include <string>
 
-namespace lab7 {
+namespace lab8 {
 
 class Book {
     std::string title_;
     std::string author_;
-    int pagecount_;
+
+private:
+    virtual std::string do_get_type() const = 0;
+    virtual int do_pagecount() const = 0;
+
+protected:
+    explicit Book(std::string title, std::string author);
 
 public:
-    explicit Book(std::string title, std::string author, int pagecount);
-
     std::string title() const { return title_; }
     std::string author() const { return author_; }
-    int pagecount() const { return pagecount_; }
 
-    void swap(Book& rhs);
+    int pagecount() const {
+        return do_pagecount();
+    }
+
     void print(std::ostream& os) const;
 
-    friend void swap(Book& a, Book& b) {
-        a.swap(b);
-    }
+    virtual ~Book() = default;
 
     friend std::ostream& operator<<(std::ostream& os, const Book& b) {
         b.print(os);
@@ -31,6 +34,4 @@ public:
     }
 };
 
-}  // namespace lab7
-
-#endif  // INCLUDED_BOOK_HPP
+}  // namespace lab8

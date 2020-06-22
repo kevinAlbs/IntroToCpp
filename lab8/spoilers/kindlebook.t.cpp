@@ -6,8 +6,8 @@
 #include <sstream>
 #include <string>
 
-using lab7::Book;
-using lab7::KindleBook;
+using lab8::Book;
+using lab8::KindleBook;
 
 void test_kindlebook_getters() {
     KindleBook b("Old Man and the Sea", "Hemingway");

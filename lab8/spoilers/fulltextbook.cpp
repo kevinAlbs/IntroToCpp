@@ -1,7 +1,7 @@
 #include "fulltextbook.hpp"
 #include <string>
 
-namespace lab7 {
+namespace lab8 {
 
 int FullTextBook::do_pagecount() const {
     return pages_.size();
@@ -15,4 +15,4 @@ std::string FullTextBook::get_page(int n) const {
     return pages_.at(n);
 }
 
-}  // namespace lab7
+}  // namespace lab8

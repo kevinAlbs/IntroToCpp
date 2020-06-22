@@ -3,7 +3,7 @@
 #include "book.hpp"
 #include <string>
 
-namespace lab7 {
+namespace lab8 {
 
 class KindleBook : public Book {
     int do_pagecount() const override {
@@ -19,4 +19,4 @@ public:
         : Book(std::move(title), std::move(author)) {}
 };
 
-}  // namespace lab7
+}  // namespace lab8

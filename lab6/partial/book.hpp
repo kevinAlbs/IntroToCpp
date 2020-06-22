@@ -12,7 +12,7 @@ class Book {
     int pagecount_;
 
 public:
-    explicit Book(std::string title, std::string author, int pagecount);
+    explicit Book(const std::string& title, const std::string& author, int pagecount);
 
     std::string title() const { return title_; }
     std::string author() const { return author_; }

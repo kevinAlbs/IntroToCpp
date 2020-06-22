@@ -1,5 +1,5 @@
-CXXFLAGS= -std=c++14 -O2 -W -Wall -Wextra -pedantic
-OBJFILES= book.o library.o book.t.o library.t.o tests.m.o
+CXXFLAGS= -std=c++14 -O1 -W -Wall -Wextra -pedantic
+OBJFILES= book.o library.o book.t.o library.t.o operator-new.t.o tests.m.o
 
 test: tests
 	./tests

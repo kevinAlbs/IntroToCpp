@@ -16,17 +16,8 @@ public:
     int bookcount() const { return books_.size(); }
     int pagecount() const;
 
-    // These two functions demonstrate the overloading approach.
-    // You could just as well write a single function
-    // with the signature `void add_book(Book b)`, and in fact
-    // that simpler approach is preferable in practice.
-
     void add_book(const Book& b) {
         books_.push_back(b);
-    }
-
-    void add_book(Book&& b) {
-        books_.push_back(std::move(b));
     }
 
     void remove_books_by_author(const std::string& author);

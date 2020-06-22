@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace lab4 {
+namespace lab6 {
 
 class Library {
     std::vector<Book> books_;
@@ -29,6 +29,6 @@ public:
     auto end() const { return books_.end(); }
 };
 
-}  // namespace lab4
+}  // namespace lab6
 
 #endif  // INCLUDED_LIBRARY_HPP

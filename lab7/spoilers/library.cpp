@@ -12,35 +12,37 @@ int Library::pagecount() const {
         books_.begin(),
         books_.end(),
         0,
-        [](int sum, const std::unique_ptr<Book>& b) {
-            return sum + b->pagecount();
+        [](int sum, const Book& b) {
+            return sum + b.pagecount();
         }
     );
 }
 
 void Library::remove_books_by_author(const std::string& author) {
-    books_.erase(
-        std::remove_if(
-            books_.begin(),
-            books_.end(),
-            [&](const auto& b) {
-                return b->author() == author;
-            }
-        ),
-        books_.end()
-    );
+    Book dummy("", author, 0);
+    auto range = books_.equal_range(dummy);
+    books_.erase(range.first, range.second);
+}
+
+template<class Set, class Predicate>
+static void erase_if(Set& set, Predicate pred)
+{
+    auto it = set.begin();
+    while (it != set.end()) {
+        if (pred(*it)) {
+            it = set.erase(it);
+        } else {
+            ++it;
+        }
+    }
 }
 
 void Library::remove_books_by_title(const std::string& title) {
-    books_.erase(
-        std::remove_if(
-            books_.begin(),
-            books_.end(),
-            [&](const auto& b) {
-                return b->title() == title;
-            }
-        ),
-        books_.end()
+    lab7::erase_if(
+        books_,
+        [&](const Book& b) {
+            return b.title() == title;
+        }
     );
 }
 

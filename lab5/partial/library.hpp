@@ -22,11 +22,6 @@ public:
 
     void remove_books_by_author(const std::string& author);
     void remove_books_by_title(const std::string& title);
-
-    auto begin() { return books_.begin(); }
-    auto end() { return books_.end(); }
-    auto begin() const { return books_.begin(); }
-    auto end() const { return books_.end(); }
 };
 
 }  // namespace lab5

@@ -16,9 +16,9 @@ void test_library_addbook() {
     assert(lib.bookcount() == 1);
     assert(lib.pagecount() == 100);
 
-    lib.add_book(Book("The Curious Incident of the Dog in the Night-Time", "Haddon", 226));
+    lib.add_book(Book("A Rebours", "Huysmans", 400));
     assert(lib.bookcount() == 2);
-    assert(lib.pagecount() == 326);
+    assert(lib.pagecount() == 500);
 }
 
 void test_library_removebooks_by_title() {
@@ -55,7 +55,7 @@ void test_library_iteration() {
     lib.add_book(Book("A Rebours", "Huysmans", 400));
     lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
     lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
-    lib.add_book(Book("The Curious Incident of the Dog in the Night-Time", "Haddon", 226));
+    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
     std::string initials = "";
     for (Book& b : lib) {
         initials += b.author()[0];
@@ -69,7 +69,7 @@ void test_library_const_iteration() {
     lib.add_book(Book("A Rebours", "Huysmans", 400));
     lib.add_book(Book("I Am a Strange Loop", "Hofstadter", 800));
     lib.add_book(Book("Death in the Afternoon", "Hemingway", 120));
-    lib.add_book(Book("The Curious Incident of the Dog in the Night-Time", "Haddon", 226));
+    lib.add_book(Book("A Farewell to Arms", "Hemingway", 250));
     std::string initials = "";
     for (const Book& b : static_cast<const Library&>(lib)) {
         initials += b.author()[0];
