@@ -19,7 +19,7 @@ in the `partial/` directory. You should start there.
 
 Run `make` to build the project. The compiler will try to compile `lab1.m.cpp`
 and immediately complain that the identifier `is_palindrome` was never declared.
-does not yet exist. Study the code to see what functions you need to add.
+Study the code to see what functions you need to add.
 
 You will write two new functions, defined in `lab1.m.cpp`:
 
