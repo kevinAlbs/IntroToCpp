@@ -7,6 +7,9 @@ lab2: $(OBJFILES)
 %.o: %.cpp %.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+lab2.m.o: lab2.m.cpp lab2.hpp readString.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJFILES) lab2
 

@@ -10,6 +10,9 @@ tests: $(OBJFILES)
 %.o: %.cpp %.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+book.t.o: book.t.cpp book.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJFILES) tests
 

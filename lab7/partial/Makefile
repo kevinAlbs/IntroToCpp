@@ -10,6 +10,15 @@ tests: $(OBJFILES)
 %.o: %.cpp %.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+book.t.o: book.t.cpp book.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+library.o: library.cpp library.hpp book.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+library.t.o: library.t.cpp library.hpp book.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJFILES) tests
 
