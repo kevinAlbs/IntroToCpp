@@ -16,9 +16,7 @@ All your code should be in the `lab6` namespace.
 A partial solution is present in the `partial/` directory.
 You should start there.
 
-Run `make` to build the project. The compiler will try to compile `tests.m.cpp`
-and immediately complain that the header file `library.cpp` was included but
-does not yet exist.
+Run `make` to build the project.
 
 
 ## 1. Use move semantics in the constructor of `Book`
